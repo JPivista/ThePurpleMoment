@@ -4,9 +4,11 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import MovementForm from "../../utils/MovementForm";
+import IndividualPledgeForm from "@/utils/IndividualPledgeForm";
 
 const ThePurplePledge = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState("institution"); // institution or individual
 
   const handleShowModal = () => {
     setIsOpen(true);
@@ -113,42 +115,73 @@ const ThePurplePledge = () => {
           </div>
         </div>
       </section>
+      {/* Modal with AnimatePresence */}
       <AnimatePresence>
-            {isOpen && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="fixed inset-0 z-50 flex items-center justify-center"
-              >
-                {/* Backdrop with blur effect */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 0.5 }}
-                  exit={{ opacity: 0 }}
-                //   onClick={handleCloseModal}
-                  className="absolute inset-0 bg-purple-500 bg-opacity-50 backdrop-blur-sm cursor-pointer h-screen"
-                ></motion.div>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className={`
+                    fixed inset-0 z-50 flex items-center justify-center
+                }`}
+          >
+            {/* Backdrop with blur effect */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.5 }}
+              exit={{ opacity: 0 }}
+              // onClick={handleCloseModal}
+              className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm cursor-pointer z-50"
+            ></motion.div>
 
-                {/* Modal content */}
-                <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0.8, opacity: 0 }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
-                  className="relative bg-white rounded-xl max-w-6xl w-full max-h-[80vh] overflow-y-auto z-50 p-6 lg:p-10"
-                >
+            {/* Modal content */}
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="relative bg-white rounded-none max-w-6xl w-full max-h-[90vh] overflow-y-auto z-50 p-6 lg:p-10 mx-4"
+            >
+              <button
+                onClick={handleCloseModal}
+                className="absolute top-4 right-4 text-black hover:text-red-500 text-5xl font-bold"
+              >
+                &times;
+              </button>
+              <div className="text-black">
+                <h3 className="text-2xl font-bold mb-4">
+                  Take the Purple Pledge Today
+                </h3>
+
+                {/* Tabs */}
+                <div className="flex space-x-1 mb-6 bg-gray-100 p-1 rounded-lg">
                   <button
-                    onClick={handleCloseModal}
-                    className="absolute top-4 right-4 text-black hover:text-red-500 text-xl font-bold"
+                    onClick={() => setActiveTab("institution")}
+                    className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all duration-200 ${
+                      activeTab === "institution"
+                        ? "bg-white text-[#84298E] shadow-sm"
+                        : "text-gray-600 hover:text-gray-900"
+                    }`}
                   >
-                    &times;
+                    For Oganizations and Institutions
                   </button>
-                  <div className="text-black">
-                    <h3 className="text-2xl font-bold mb-4">
-                      Take the Purple Pledge Today
-                    </h3>
-                    <p>
+                  <button
+                    onClick={() => setActiveTab("individual")}
+                    className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all duration-200 ${
+                      activeTab === "individual"
+                        ? "bg-white text-[#84298E] shadow-sm"
+                        : "text-gray-600 hover:text-gray-900"
+                    }`}
+                  >
+                    For Individual
+                  </button>
+                </div>
+
+                {/* Tab Content */}
+                {activeTab === "institution" ? (
+                  <div>
+                    <p className="mb-4">
                       Join the Purple Movement and commit to building a fairer,
                       more inclusive future. This form is currently open to
                       institutions. If you wish to take the pledge as an
@@ -156,10 +189,21 @@ const ThePurplePledge = () => {
                     </p>
                     <MovementForm onSuccess={handleFormSuccess} />
                   </div>
-                </motion.div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                ) : (
+                  <div>
+                    <p className="mb-4">
+                      Join the Purple Movement and commit to building a fairer,
+                      more inclusive future. This form is for individuals who
+                      wish to take the pledge in their personal capacity.
+                    </p>
+                    <IndividualPledgeForm onSuccess={handleFormSuccess} />
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };

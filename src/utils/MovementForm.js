@@ -196,7 +196,7 @@ const PurplePledgeForm = () => {
 
     // Validate all required fields before submission
     const newErrors = {};
-
+    
     if (!institutionType || institutionType === "Institution Type") {
       newErrors.institutionType = "Please select an institution type";
     }
@@ -335,8 +335,8 @@ const PurplePledgeForm = () => {
                           backgroundColor: "transparent"
                         }}
                         onMouseEnter={(e) => {
-                          e.target.style.backgroundColor = "#f3e8ff";
-                          e.target.style.color = "#7c3aed";
+                          e.target.style.backgroundColor = "#FBEBFD";
+                          e.target.style.color = "#84298E";
                         }}
                         onMouseLeave={(e) => {
                           e.target.style.backgroundColor = "transparent";
@@ -358,100 +358,100 @@ const PurplePledgeForm = () => {
           </div>
 
           {/* Institution Name */}
-          <div>
-            <label
+        <div>
+          <label
               htmlFor="institutionName"
-              className="block text-md font-medium text-gray-700"
-            >
+            className="block text-md font-medium text-gray-700"
+          >
               Institution Name *
-            </label>
-            <input
+          </label>
+          <input
               id="institutionName"
               name="institutionName"
               value={institutionName}
-              onChange={handleTextChange}
-              required
+            onChange={handleTextChange}
+            required
               className={`mt-1 block w-full border rounded-md p-3 text-sm ${
                 errors.institutionName ? "border-red-500" : "border-gray-300"
-              }`}
-            />
+            }`}
+          />
             {errors.institutionName && (
               <p className="text-red-600 text-md mt-1">
                 {errors.institutionName}
               </p>
-            )}
-          </div>
+          )}
+        </div>
 
           {/* Representative Name */}
-          <div>
-            <label
+        <div>
+          <label
               htmlFor="representativeName"
-              className="block text-md font-medium text-gray-700"
-            >
+            className="block text-md font-medium text-gray-700"
+          >
               Representative&apos;s Name *
-            </label>
-            <input
+          </label>
+          <input
               id="representativeName"
               name="representativeName"
               value={representativeName}
-              onChange={handleTextChange}
+            onChange={handleTextChange}
               placeholder="Name of the person submitting the pledge on behalf of the institution"
               required
               className={`mt-1 block w-full border rounded-md p-3 text-sm ${
                 errors.representativeName ? "border-red-500" : "border-gray-300"
-              }`}
-            />
+            }`}
+          />
             {errors.representativeName && (
               <p className="text-red-600 text-md mt-1">
                 {errors.representativeName}
               </p>
-            )}
-          </div>
+          )}
+        </div>
 
           {/* Representative Designation */}
-          <div>
-            <label
+        <div>
+          <label
               htmlFor="representativeDesignation"
-              className="block text-md font-medium text-gray-700"
-            >
+            className="block text-md font-medium text-gray-700"
+          >
               Representative&apos;s Designation *
-            </label>
+          </label>
 
-            <input
+          <input
               id="representativeDesignation"
               name="representativeDesignation"
               value={representativeDesignation}
-              onChange={handleTextChange}
+            onChange={handleTextChange}
               placeholder="Your role or title within the institution"
               required
               className={`mt-1 block w-full border rounded-md p-3 text-sm ${
                 errors.representativeDesignation
                   ? "border-red-500"
                   : "border-gray-300"
-              }`}
-            />
+            }`}
+          />
             {errors.representativeDesignation && (
               <p className="text-red-600 text-md mt-1">
                 {errors.representativeDesignation}
               </p>
-            )}
-          </div>
+          )}
+        </div>
 
           {/* Representative Email */}
-          <div>
-            <label
+        <div>
+          <label
               htmlFor="representativeEmail"
-              className="block text-md font-medium text-gray-700"
-            >
+            className="block text-md font-medium text-gray-700"
+          >
               Representative&apos;s Email *
-            </label>
+          </label>
 
             <input
               id="representativeEmail"
               name="representativeEmail"
               type="email"
               value={representativeEmail}
-              onChange={handleTextChange}
+            onChange={handleTextChange}
               placeholder="We'll use this to contact you"
               className={`mt-1 block w-full border rounded-md p-3 text-sm ${
                 errors.representativeEmail
@@ -478,6 +478,8 @@ const PurplePledgeForm = () => {
             <input
               id="contactNumber"
               name="contactNumber"
+              type="tel"
+              maxLength={10}
               value={contactNumber}
               onChange={handleTextChange}
               placeholder="In case we need to verify details or share updates"
@@ -489,17 +491,17 @@ const PurplePledgeForm = () => {
               <p className="text-red-600 text-md mt-1">
                 {errors.contactNumber}
               </p>
-            )}
-          </div>
+          )}
+        </div>
 
           {/* Website */}
-          <div>
-            <label
+        <div>
+          <label
               htmlFor="website"
               className="block text-md font-medium text-gray-700"
-            >
+          >
               Website
-            </label>
+          </label>
 
             <input
               id="website"
@@ -548,6 +550,10 @@ const PurplePledgeForm = () => {
                     if (!isCountryOpen) {
                       setIsCountryOpen(true);
                     }
+                    // Clear the selected country when user starts typing
+                    if (country && e.target.value !== country) {
+                      setCountry("");
+                    }
                   }}
                   onFocus={() => setIsCountryOpen(true)}
                   placeholder="Select your country of operation"
@@ -590,8 +596,8 @@ const PurplePledgeForm = () => {
                             backgroundColor: "transparent"
                           }}
                           onMouseEnter={(e) => {
-                            e.target.style.backgroundColor = "#f3e8ff";
-                            e.target.style.color = "#7c3aed";
+                            e.target.style.backgroundColor = "#FBEBFD";
+                            e.target.style.color = "#84298E";
                           }}
                           onMouseLeave={(e) => {
                             e.target.style.backgroundColor = "transparent";
