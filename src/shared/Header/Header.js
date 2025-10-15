@@ -19,10 +19,13 @@ const Header = () => {
   const handleCloseModal = () => {
     setIsOpen(false);
     document.body.style.overflow = ""; // Enable scrolling
+    document.body.style.paddingRight = ""; // Remove any padding that might have been added
   };
 
   const handleFormSuccess = () => {
     setIsOpen(false);
+    document.body.style.overflow = ""; // Enable scrolling
+    document.body.style.paddingRight = ""; // Remove any padding that might have been added
   };
 
   useEffect(() => {
@@ -32,7 +35,12 @@ const Header = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      // Cleanup: ensure body scroll is restored when component unmounts
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
+    };
   }, []);
 
   return (

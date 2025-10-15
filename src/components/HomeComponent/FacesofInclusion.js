@@ -62,18 +62,18 @@ const FacesofInclusion = () => {
       {/* Top Section */}
       <div>
         <h2 className="md:text-4xl text-2xl font-semibold flex flex-col items-center justify-center gap-1 pb-10">
-          <span className="text-black roboto-serif-medium text-4xl">
+          <span className="text-black roboto-serif-medium md:text-4xl text-3xl">
             FACES OF INCLUSION
           </span>
         </h2>
       </div>
 
       {/* Carousel Section */}
-      <div className="mt-6 h-32 flex items-center justify-center overflow-hidden text-black relative w-full max-w-6xl">
+      <div className="lg:mt-6 flex items-center justify-center overflow-hidden text-black relative w-full max-w-6xl">
         {/* Left Arrow */}
         <button
           onClick={goToPrevious}
-          className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-2 bg-[#E8E8E8] rounded-full transition-colors duration-200 hover:bg-[#D0D0D0] active:scale-95"
+          className="absolute lg:left-4 left-0 top-1/2 transform -translate-y-1/2 z-10 p-2 bg-[#E8E8E8] rounded-full transition-colors duration-200 hover:bg-[#D0D0D0] active:scale-95"
           aria-label="Previous story"
         >
           <svg
@@ -102,13 +102,13 @@ const FacesofInclusion = () => {
               transition={{ duration: 0.5 }}
               className="text-center"
             >
-              <h5 className="text-[#84298E] Poppins-semibold text-2xl ">
+              <h5 className="text-[#84298E] Poppins-semibold lg:text-2xl text-xl">
                 {carouselItems[index].title}
               </h5>
-              <h6 className="text-black Poppins-regular text-xl pt-2">
+              <h6 className="text-black Poppins-regular lg:text-xl text-lg pt-2">
                 {carouselItems[index].subtitle}
               </h6>
-              <p className="text-black Poppins-regular pt-4 text-lg">
+              <p className="text-black Poppins-regular pt-4 lg:text-lg text-base">
                 {carouselItems[index].description}
               </p>
             </motion.div>
@@ -118,7 +118,7 @@ const FacesofInclusion = () => {
         {/* Right Arrow */}
         <button
           onClick={goToNext}
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-2 bg-[#E8E8E8] rounded-full transition-colors duration-200 hover:bg-[#D0D0D0] active:scale-95"
+          className="absolute lg:right-4 right-0 top-1/2 transform -translate-y-1/2 z-10 p-2 bg-[#E8E8E8] rounded-full transition-colors duration-200 hover:bg-[#D0D0D0] active:scale-95"
           aria-label="Next story"
         >
           <svg
