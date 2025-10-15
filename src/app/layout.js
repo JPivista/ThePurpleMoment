@@ -36,7 +36,7 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} ${merriweather.variable} ${poppins.variable} antialiased`}
       >
         <Header />
-        <div className="pt-20 md:pt-24">
+        <div>
           {children}
         </div>
       </body>

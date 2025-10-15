@@ -3,7 +3,7 @@ import Image from "next/image";
 const HomeBanner = () => {
     return (
         <section className="relative py-10 bg-gray-50">
-            <div className="container mx-auto px-4 min-h-[500px] flex items-center">
+            <div className="container mx-auto px-4 min-h-[60vh] flex items-center">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     {/* Left Content Area */}
                     <div>
@@ -19,7 +19,7 @@ const HomeBanner = () => {
                     <div className="">
                         <div className="">
                             <Image
-                                src="/home/the-purple-momnet.png"
+                                src="/home/the-purple-momnet-banner.png"
                                 alt="The Purple Moment - Hands touching globe"
                                 width={1700}
                                 height={1700}
