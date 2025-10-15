@@ -3,7 +3,7 @@ import Image from "next/image";
 const HomeBanner = () => {
     return (
         <section className="relative pt-10">
-            <div className="container mx-auto md:min-h-[60vh] min-h-[75vh] flex md:items-center items-end">
+            <div className="container mx-auto md:min-h-[60vh] md:mt-0 mt-12 flex md:items-center items-end">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     {/* Left Content Area */}
                     <div className="md:px-0 px-4 space-y-2">
