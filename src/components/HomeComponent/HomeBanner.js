@@ -2,16 +2,19 @@ import Image from "next/image";
 
 const HomeBanner = () => {
     return (
-        <section className="relative py-10 bg-gray-50">
-            <div className="container mx-auto px-4 min-h-[60vh] flex items-center">
+        <section className="relative pt-10 bg-gray-50">
+            <div className="container mx-auto md:min-h-[60vh] min-h-[68vh] flex md:items-center items-end">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     {/* Left Content Area */}
-                    <div>
+                    <div className="md:px-0 px-4 space-y-2">
                         <h1 className="text-[30px] md:text-[40px] font-bold text-black ">
                             The Pledge for Inclusion
                         </h1>
-                        <p className="text-[18px] font-regular font-poppins text-custom-purple">
+                        <p className="text-[18px] font-regular font-poppins text-black">
                             Inclusion. Awareness. Action.
+                        </p>
+                        <p className="text-[18px] Poppins-bold  text-custom-purple">
+                            #ThePurpleMovement
                         </p>
                     </div>
 
@@ -23,7 +26,7 @@ const HomeBanner = () => {
                                 alt="The Purple Moment - Hands touching globe"
                                 width={1700}
                                 height={1700}
-                                className="lg:w-[55%] w-full h-auto rounded-lg absolute right-0 bottom-0"
+                                className="w-full h-auto rounded-lg lg:absolute lg:right-0 lg:bottom-0 lg:w-[55%]"
                             />
                         </div>
                     </div>
