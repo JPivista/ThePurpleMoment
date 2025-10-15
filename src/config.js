@@ -28,7 +28,7 @@ const config = {
         if (config.isProduction && config.isProductionDomain()) {
             return 'index, follow';
         }
-        return 'noindex, nofollow';
+        return 'index, follow';
     }
 };
 
