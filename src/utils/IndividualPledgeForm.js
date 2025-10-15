@@ -43,6 +43,17 @@ const IndividualPledgeForm = ({ onSuccess }) => {
     "gmail.co",
     "gmail.c",
     "gmail.",
+    "gmai.com",
+    "gaim.com",
+    "gmial.com",
+    "gmail.co",
+    "gmail.c",
+    "gmail.",
+    "gmai.com",
+    "gmai.co",
+    "gaim.com",
+    "gmial.com",
+    "giam.com",
   ];
 
   const isValidEmail = (email) => {

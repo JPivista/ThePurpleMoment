@@ -149,7 +149,7 @@ const TheWorldWeImagine = () => {
                                             </h3>
                                             <ol className="space-y-3 mb-6">
                                                 {tabs[activeTab].content.numberedSteps.map((step, index) => (
-                                                    <li key={index} className="text-white Poppins-light text-sm leading-relaxed flex items-start">
+                                                    <li key={index} className="text-white Poppins-light text-[16px] leading-relaxed flex items-start">
                                                         <span className="text-white Poppins-bold mr-3 min-w-[20px]">{index + 1}.</span>
                                                         <span>{step}</span>
                                                     </li>
