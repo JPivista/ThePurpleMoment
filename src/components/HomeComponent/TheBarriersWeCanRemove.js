@@ -11,9 +11,19 @@ const TheBarriersWeCanRemove = () => {
                     </h2>
 
                     {/* Image Section */}
-                    <div>
+                    <div className='w-full md:flex hidden'>
                         <Image
                             src="/home/the-barriers-we-can-remove.svg"
+                            alt="The Barriers We Can Remove"
+                            width={800}
+                            height={600}
+                            className="w-full h-auto  rounded-lg"
+                        />
+                    </div>
+
+                    <div className='w-full md:hidden flex'>
+                        <Image
+                            src="/home/the-barriers-we-can-remove-mobile.svg"
                             alt="The Barriers We Can Remove"
                             width={800}
                             height={600}

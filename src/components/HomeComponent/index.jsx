@@ -6,6 +6,9 @@ import TheBarriersWeCanRemove from './TheBarriersWeCanRemove';
 import ThePurplePledge from './ThePurplePledge';
 import TheWorldWeImagine from './TheWorldWeImagine';
 import FacesofInclusion from './FacesofInclusion';
+import ThePurpleRatingFramework from './ThePurpleRatingFramework';
+import ThePurpleCircle from './ThePurpleCircle';
+import PurplePledgeToday from './PurplePledgeToday';
 
 const HomeComponent = () => {
     return (
@@ -22,6 +25,9 @@ const HomeComponent = () => {
             <ThePurplePledge />
             <TheWorldWeImagine />
             <FacesofInclusion />
+            <ThePurpleRatingFramework />
+            <ThePurpleCircle />
+            <PurplePledgeToday />
         </div>
     );
 };

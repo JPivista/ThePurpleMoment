@@ -12,7 +12,7 @@ const TheBigPicture = () => {
                     </h2>
                     <div className="w-full flex justify-center">
                         <Image
-                            src="/home/the-big-picture-why-inclusion-matters.png"
+                            src="/home/the-big-picture-why-inclusion-matters.webp"
                             alt="The Big Picture - Why Inclusion Matters"
                             width={800}
                             height={600}
