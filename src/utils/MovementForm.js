@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { getNames } from "country-list";
 
-const PurplePledgeForm = () => {
+const PurplePledgeForm = ({ onSuccess }) => {
   const [errors, setErrors] = useState({});
   const [institutionType, setInstitutionType] = useState("");
   const [institutionName, setInstitutionName] = useState("");
@@ -25,16 +25,16 @@ const PurplePledgeForm = () => {
   const institutionTypeRef = useRef(null);
   const countryRef = useRef(null);
 
-  const institutionTypeOptions = ["Organisation", "Educational Institution"];
+  const institutionTypeOptions = ["Organization", "Educational Institution"];
 
   // Get all countries from the library
   const allCountries = getNames().sort();
-  
+
   // Filter countries based on search term
   const filteredCountries = countrySearchTerm
-    ? allCountries.filter(country =>
-        country.toLowerCase().includes(countrySearchTerm.toLowerCase())
-      )
+    ? allCountries.filter((country) =>
+      country.toLowerCase().includes(countrySearchTerm.toLowerCase())
+    )
     : allCountries;
 
   const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
@@ -58,7 +58,10 @@ const PurplePledgeForm = () => {
   // Close dropdowns when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (institutionTypeRef.current && !institutionTypeRef.current.contains(event.target)) {
+      if (
+        institutionTypeRef.current &&
+        !institutionTypeRef.current.contains(event.target)
+      ) {
         setIsInstitutionTypeOpen(false);
       }
       if (countryRef.current && !countryRef.current.contains(event.target)) {
@@ -86,7 +89,7 @@ const PurplePledgeForm = () => {
 
   const handleCountrySelect = (value) => {
     setCountry(value);
-    setCountrySearchTerm(""); // Clear search when selecting
+    setCountrySearchTerm(value); // Set search term to match selected value
     setIsCountryOpen(false);
     const newErrors = { ...errors };
     if (value === "Country") {
@@ -96,7 +99,6 @@ const PurplePledgeForm = () => {
     }
     setErrors(newErrors);
   };
-
 
   const handleTextChange = (e) => {
     const { name, value } = e.target;
@@ -196,7 +198,7 @@ const PurplePledgeForm = () => {
 
     // Validate all required fields before submission
     const newErrors = {};
-    
+
     if (!institutionType || institutionType === "Institution Type") {
       newErrors.institutionType = "Please select an institution type";
     }
@@ -287,23 +289,24 @@ const PurplePledgeForm = () => {
               Institution Type *
             </label>
             <div
-              className={`mt-1 relative cursor-pointer ${
-                errors.institutionType ? "border-red-500" : "border-gray-300"
-              }`}
+              className={`mt-1 relative cursor-pointer ${errors.institutionType ? "border-red-500" : "border-gray-300"
+                }`}
             >
               <div
                 onClick={() => setIsInstitutionTypeOpen(!isInstitutionTypeOpen)}
-                className={`w-full border rounded-md p-3 text-sm bg-white flex items-center justify-between ${
-                  errors.institutionType ? "border-red-500" : "border-gray-300"
-                }`}
+                className={`w-full border rounded-md p-3 text-sm bg-white flex items-center justify-between ${errors.institutionType ? "border-red-500" : "border-gray-300"
+                  }`}
               >
-                <span className={institutionType ? "text-gray-900" : "text-gray-500"}>
+                <span
+                  className={
+                    institutionType ? "text-gray-900" : "text-gray-500"
+                  }
+                >
                   {institutionType || "Institution Type"}
                 </span>
                 <svg
-                  className={`w-4 h-4 transition-transform ${
-                    isInstitutionTypeOpen ? "rotate-180" : ""
-                  }`}
+                  className={`w-4 h-4 transition-transform ${isInstitutionTypeOpen ? "rotate-180" : ""
+                    }`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -316,7 +319,7 @@ const PurplePledgeForm = () => {
                   />
                 </svg>
               </div>
-              
+
               <AnimatePresence>
                 {isInstitutionTypeOpen && (
                   <motion.div
@@ -332,7 +335,7 @@ const PurplePledgeForm = () => {
                         className="px-3 py-2 hover:bg-purple-50 cursor-pointer text-sm transition-colors"
                         style={{
                           color: "#374151",
-                          backgroundColor: "transparent"
+                          backgroundColor: "transparent",
                         }}
                         onMouseEnter={(e) => {
                           e.target.style.backgroundColor = "#FBEBFD";
@@ -358,106 +361,104 @@ const PurplePledgeForm = () => {
           </div>
 
           {/* Institution Name */}
-        <div>
-          <label
+          <div>
+            <label
               htmlFor="institutionName"
-            className="block text-md font-medium text-gray-700"
-          >
+              className="block text-md font-medium text-gray-700"
+            >
               Institution Name *
-          </label>
-          <input
+            </label>
+            <input
               id="institutionName"
               name="institutionName"
               value={institutionName}
-            onChange={handleTextChange}
-            required
-              className={`mt-1 block w-full border rounded-md p-3 text-sm ${
-                errors.institutionName ? "border-red-500" : "border-gray-300"
-            }`}
-          />
+              onChange={handleTextChange}
+              required
+              className={`mt-1 block w-full border rounded-md p-3 text-sm ${errors.institutionName ? "border-red-500" : "border-gray-300"
+                }`}
+            />
             {errors.institutionName && (
               <p className="text-red-600 text-md mt-1">
                 {errors.institutionName}
               </p>
-          )}
-        </div>
+            )}
+          </div>
 
           {/* Representative Name */}
-        <div>
-          <label
+          <div>
+            <label
               htmlFor="representativeName"
-            className="block text-md font-medium text-gray-700"
-          >
+              className="block text-md font-medium text-gray-700"
+            >
               Representative&apos;s Name *
-          </label>
-          <input
+            </label>
+            <input
               id="representativeName"
               name="representativeName"
+              autoComplete="name"
               value={representativeName}
-            onChange={handleTextChange}
+              onChange={handleTextChange}
               placeholder="Name of the person submitting the pledge on behalf of the institution"
               required
-              className={`mt-1 block w-full border rounded-md p-3 text-sm ${
-                errors.representativeName ? "border-red-500" : "border-gray-300"
-            }`}
-          />
+              className={`mt-1 block w-full border rounded-md p-3 text-sm ${errors.representativeName ? "border-red-500" : "border-gray-300"
+                }`}
+            />
             {errors.representativeName && (
               <p className="text-red-600 text-md mt-1">
                 {errors.representativeName}
               </p>
-          )}
-        </div>
+            )}
+          </div>
 
           {/* Representative Designation */}
-        <div>
-          <label
+          <div>
+            <label
               htmlFor="representativeDesignation"
-            className="block text-md font-medium text-gray-700"
-          >
+              className="block text-md font-medium text-gray-700"
+            >
               Representative&apos;s Designation *
-          </label>
+            </label>
 
-          <input
+            <input
               id="representativeDesignation"
               name="representativeDesignation"
               value={representativeDesignation}
-            onChange={handleTextChange}
+              onChange={handleTextChange}
               placeholder="Your role or title within the institution"
               required
-              className={`mt-1 block w-full border rounded-md p-3 text-sm ${
-                errors.representativeDesignation
-                  ? "border-red-500"
-                  : "border-gray-300"
-            }`}
-          />
+              className={`mt-1 block w-full border rounded-md p-3 text-sm ${errors.representativeDesignation
+                ? "border-red-500"
+                : "border-gray-300"
+                }`}
+            />
             {errors.representativeDesignation && (
               <p className="text-red-600 text-md mt-1">
                 {errors.representativeDesignation}
               </p>
-          )}
-        </div>
+            )}
+          </div>
 
           {/* Representative Email */}
-        <div>
-          <label
+          <div>
+            <label
               htmlFor="representativeEmail"
-            className="block text-md font-medium text-gray-700"
-          >
+              className="block text-md font-medium text-gray-700"
+            >
               Representative&apos;s Email *
-          </label>
+            </label>
 
             <input
               id="representativeEmail"
               name="representativeEmail"
               type="email"
+              autoComplete="email"
               value={representativeEmail}
-            onChange={handleTextChange}
+              onChange={handleTextChange}
               placeholder="We'll use this to contact you"
-              className={`mt-1 block w-full border rounded-md p-3 text-sm ${
-                errors.representativeEmail
-                  ? "border-red-500"
-                  : "border-gray-300"
-              }`}
+              className={`mt-1 block w-full border rounded-md p-3 text-sm ${errors.representativeEmail
+                ? "border-red-500"
+                : "border-gray-300"
+                }`}
             />
             {errors.representativeEmail && (
               <p className="text-red-600 text-md mt-1">
@@ -479,29 +480,29 @@ const PurplePledgeForm = () => {
               id="contactNumber"
               name="contactNumber"
               type="tel"
+              autoComplete="tel"
               maxLength={10}
               value={contactNumber}
               onChange={handleTextChange}
               placeholder="In case we need to verify details or share updates"
-              className={`mt-1 block w-full border rounded p-2 text-sm ${
-                errors.contactNumber ? "border-red-500" : "border-gray-300"
-              }`}
+              className={`mt-1 block w-full border rounded p-2 text-sm ${errors.contactNumber ? "border-red-500" : "border-gray-300"
+                }`}
             />
             {errors.contactNumber && (
               <p className="text-red-600 text-md mt-1">
                 {errors.contactNumber}
               </p>
-          )}
-        </div>
+            )}
+          </div>
 
           {/* Website */}
-        <div>
-          <label
+          <div>
+            <label
               htmlFor="website"
               className="block text-md font-medium text-gray-700"
-          >
+            >
               Website
-          </label>
+            </label>
 
             <input
               id="website"
@@ -510,9 +511,8 @@ const PurplePledgeForm = () => {
               value={website}
               onChange={handleTextChange}
               placeholder="Official website URL of the institution"
-              className={`mt-1 block w-full border rounded p-2 text-sm ${
-                errors.website ? "border-red-500" : "border-gray-300"
-              }`}
+              className={`mt-1 block w-full border rounded p-2 text-sm ${errors.website ? "border-red-500" : "border-gray-300"
+                }`}
             />
             {errors.website && (
               <p className="text-red-600 text-md mt-1">{errors.website}</p>
@@ -528,42 +528,53 @@ const PurplePledgeForm = () => {
               Country *
             </label>
             <div
-              className={`mt-1 relative cursor-pointer ${
-                errors.country ? "border-red-500" : "border-gray-300"
-              }`}
+              className={`mt-1 relative cursor-pointer ${errors.country ? "border-red-500" : "border-gray-300"
+                }`}
             >
               <div
-                className={`w-full border rounded p-2 text-sm bg-white flex items-center justify-between ${
-                  errors.country ? "border-red-500" : "border-gray-300"
-                }`}
-                style={{
-                  backgroundColor: "#f8f9fa",
-                  color: "#374151",
-                  borderColor: errors.country ? "#ef4444" : "#d1d5db"
-                }}
+                className={`w-full border rounded-md p-3 text-sm bg-white flex items-center justify-between ${errors.country ? "border-red-500" : "border-gray-300"
+                  }`}
               >
                 <input
                   type="text"
+                  id="country"
+                  name="country"
+                  autoComplete="country"
                   value={countrySearchTerm || country}
                   onChange={(e) => {
-                    setCountrySearchTerm(e.target.value);
+                    const value = e.target.value;
+                    setCountrySearchTerm(value);
+                    setCountry(value); // Set country directly for autofill compatibility
                     if (!isCountryOpen) {
                       setIsCountryOpen(true);
                     }
-                    // Clear the selected country when user starts typing
-                    if (country && e.target.value !== country) {
-                      setCountry("");
+                    // Clear errors when user types
+                    if (errors.country) {
+                      setErrors(prev => {
+                        const newErrors = { ...prev };
+                        delete newErrors.country;
+                        return newErrors;
+                      });
                     }
                   }}
                   onFocus={() => setIsCountryOpen(true)}
+                  onBlur={() => {
+                    // Keep dropdown open briefly to allow clicking on options
+                    setTimeout(() => setIsCountryOpen(false), 150);
+                  }}
                   placeholder="Select your country of operation"
                   className="flex-1 bg-transparent outline-none text-sm"
                   style={{ color: country ? "#111827" : "#6b7280" }}
+                  list="country-suggestions"
                 />
+                {/* <datalist id="country-suggestions">
+                  {allCountries.map((countryOption) => (
+                    <option key={countryOption} value={countryOption} />
+                  ))}
+                </datalist> */}
                 <svg
-                  className={`w-4 h-4 transition-transform ${
-                    isCountryOpen ? "rotate-180" : ""
-                  }`}
+                  className={`w-4 h-4 transition-transform ${isCountryOpen ? "rotate-180" : ""
+                    }`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -576,7 +587,7 @@ const PurplePledgeForm = () => {
                   />
                 </svg>
               </div>
-              
+
               <AnimatePresence>
                 {isCountryOpen && (
                   <motion.div
@@ -593,11 +604,11 @@ const PurplePledgeForm = () => {
                           className="px-3 py-2 hover:bg-purple-50 cursor-pointer text-sm transition-colors"
                           style={{
                             color: "#374151",
-                            backgroundColor: "transparent"
+                            backgroundColor: "transparent",
                           }}
                           onMouseEnter={(e) => {
-                            e.target.style.backgroundColor = "#FBEBFD";
-                            e.target.style.color = "#84298E";
+                            e.target.style.backgroundColor = "#f3e8ff";
+                            e.target.style.color = "#7c3aed";
                           }}
                           onMouseLeave={(e) => {
                             e.target.style.backgroundColor = "transparent";
@@ -638,11 +649,10 @@ const PurplePledgeForm = () => {
               onChange={handleTextChange}
               rows={4}
               placeholder="A short statement about your motivation or values"
-              className={`mt-1 block w-full border rounded p-2 text-sm ${
-                errors.motivationStatement
-                  ? "border-red-500"
-                  : "border-gray-300"
-              }`}
+              className={`mt-1 block w-full border rounded p-2 text-sm ${errors.motivationStatement
+                ? "border-red-500"
+                : "border-gray-300"
+                }`}
             />
             {errors.motivationStatement && (
               <p className="text-red-600 text-md mt-1">
@@ -685,17 +695,23 @@ const PurplePledgeForm = () => {
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-white rounded-lg p-6 text-center shadow-xl"
+              className="bg-white rounded-lg p-6 text-center shadow-xl max-w-md"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ type: "spring", stiffness: 260, damping: 20 }}
             >
               <h3 className="text-lg font-semibold text-green-700">
-                Purple Pledge Submitted Successfully
+                Thank you for taking the Purple Pledge. Your commitment brings
+                us one step closer to a more accessible and inclusive world.
               </h3>
               <button
-                onClick={() => setShowSuccessModal(false)}
+                onClick={() => {
+                  setShowSuccessModal(false);
+                  if (typeof onSuccess === 'function') {
+                    onSuccess();
+                  }
+                }}
                 className="mt-4 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition"
               >
                 Close

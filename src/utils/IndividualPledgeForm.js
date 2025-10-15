@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { getNames } from "country-list";
 
-const IndividualPledgeForm = () => {
+const IndividualPledgeForm = ({ onSuccess }) => {
   const [errors, setErrors] = useState({});
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -21,15 +21,15 @@ const IndividualPledgeForm = () => {
   const [isCountryOpen, setIsCountryOpen] = useState(false);
   const [countrySearchTerm, setCountrySearchTerm] = useState("");
   const countryRef = useRef(null);
-
+  const [isshow, setIsShow] = useState(false);
   // Get all countries from the library
   const allCountries = getNames().sort();
-  
+
   // Filter countries based on search term
   const filteredCountries = countrySearchTerm
-    ? allCountries.filter(country =>
-        country.toLowerCase().includes(countrySearchTerm.toLowerCase())
-      )
+    ? allCountries.filter((country) =>
+      country.toLowerCase().includes(countrySearchTerm.toLowerCase())
+    )
     : allCountries;
 
   const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
@@ -66,7 +66,7 @@ const IndividualPledgeForm = () => {
 
   const handleCountrySelect = (value) => {
     setCountry(value);
-    setCountrySearchTerm(""); // Clear search when selecting
+    setCountrySearchTerm(value); // Set search term to match selected value
     setIsCountryOpen(false);
     const newErrors = { ...errors };
     if (value === "Country") {
@@ -161,6 +161,7 @@ const IndividualPledgeForm = () => {
     setMotivationStatement("");
     setWebsite("");
     setErrors({});
+    setIsShow(false);
   };
 
   const handleSubmit = async (e) => {
@@ -230,6 +231,7 @@ const IndividualPledgeForm = () => {
 
       if (res.data.status === "mail_sent") {
         resetForm();
+        setIsShow(true);
         setShowSuccessModal(true);
       } else if (res.data.status === "validation_failed") {
         const newErrors = {};
@@ -260,18 +262,16 @@ const IndividualPledgeForm = () => {
             <input
               id="fullName"
               name="fullName"
+              autoComplete="name"
               value={fullName}
               onChange={handleTextChange}
               placeholder="Your first and last name"
               required
-              className={`mt-1 block w-full border rounded-md p-3 text-sm ${
-                errors.fullName ? "border-red-500" : "border-gray-300"
-              }`}
+              className={`mt-1 block w-full border rounded-md p-3 text-sm ${errors.fullName ? "border-red-500" : "border-gray-300"
+                }`}
             />
             {errors.fullName && (
-              <p className="text-red-600 text-md mt-1">
-                {errors.fullName}
-              </p>
+              <p className="text-red-600 text-md mt-1">{errors.fullName}</p>
             )}
           </div>
 
@@ -287,18 +287,16 @@ const IndividualPledgeForm = () => {
               id="email"
               name="email"
               type="email"
+              autoComplete="email"
               value={email}
               onChange={handleTextChange}
               placeholder="We'll use this to contact you"
               required
-              className={`mt-1 block w-full border rounded-md p-3 text-sm ${
-                errors.email ? "border-red-500" : "border-gray-300"
-              }`}
+              className={`mt-1 block w-full border rounded-md p-3 text-sm ${errors.email ? "border-red-500" : "border-gray-300"
+                }`}
             />
             {errors.email && (
-              <p className="text-red-600 text-md mt-1">
-                {errors.email}
-              </p>
+              <p className="text-red-600 text-md mt-1">{errors.email}</p>
             )}
           </div>
 
@@ -314,14 +312,14 @@ const IndividualPledgeForm = () => {
               id="contactNumber"
               name="contactNumber"
               type="tel"
+              autoComplete="tel"
               maxLength={10}
               value={contactNumber}
               onChange={handleTextChange}
               placeholder="In case we need to verify details or share updates"
               required
-              className={`mt-1 block w-full border rounded-md p-3 text-sm ${
-                errors.contactNumber ? "border-red-500" : "border-gray-300"
-              }`}
+              className={`mt-1 block w-full border rounded-md p-3 text-sm ${errors.contactNumber ? "border-red-500" : "border-gray-300"
+                }`}
             />
             {errors.contactNumber && (
               <p className="text-red-600 text-md mt-1">
@@ -345,14 +343,11 @@ const IndividualPledgeForm = () => {
               onChange={handleTextChange}
               placeholder="Tell us what you do — student, educator, entrepreneur, artist, etc"
               required
-              className={`mt-1 block w-full border rounded-md p-3 text-sm ${
-                errors.occupation ? "border-red-500" : "border-gray-300"
-              }`}
+              className={`mt-1 block w-full border rounded-md p-3 text-sm ${errors.occupation ? "border-red-500" : "border-gray-300"
+                }`}
             />
             {errors.occupation && (
-              <p className="text-red-600 text-md mt-1">
-                {errors.occupation}
-              </p>
+              <p className="text-red-600 text-md mt-1">{errors.occupation}</p>
             )}
           </div>
 
@@ -367,18 +362,16 @@ const IndividualPledgeForm = () => {
             <input
               id="city"
               name="city"
+              autoComplete="address-level2"
               value={city}
               onChange={handleTextChange}
               placeholder="The city where you currently live or work"
               required
-              className={`mt-1 block w-full border rounded-md p-3 text-sm ${
-                errors.city ? "border-red-500" : "border-gray-300"
-              }`}
+              className={`mt-1 block w-full border rounded-md p-3 text-sm ${errors.city ? "border-red-500" : "border-gray-300"
+                }`}
             />
             {errors.city && (
-              <p className="text-red-600 text-md mt-1">
-                {errors.city}
-              </p>
+              <p className="text-red-600 text-md mt-1">{errors.city}</p>
             )}
           </div>
 
@@ -391,37 +384,53 @@ const IndividualPledgeForm = () => {
               Country *
             </label>
             <div
-              className={`mt-1 relative cursor-pointer ${
-                errors.country ? "border-red-500" : "border-gray-300"
-              }`}
+              className={`mt-1 relative cursor-pointer ${errors.country ? "border-red-500" : "border-gray-300"
+                }`}
             >
               <div
-                className={`w-full border rounded-md p-3 text-sm bg-white flex items-center justify-between ${
-                  errors.country ? "border-red-500" : "border-gray-300"
-                }`}
+                className={`w-full border rounded-md p-3 text-sm bg-white flex items-center justify-between ${errors.country ? "border-red-500" : "border-gray-300"
+                  }`}
               >
                 <input
                   type="text"
+                  id="country"
+                  name="country"
+                  autoComplete="country"
                   value={countrySearchTerm || country}
                   onChange={(e) => {
-                    setCountrySearchTerm(e.target.value);
+                    const value = e.target.value;
+                    setCountrySearchTerm(value);
+                    setCountry(value); // Set country directly for autofill compatibility
                     if (!isCountryOpen) {
                       setIsCountryOpen(true);
                     }
-                    // Clear the selected country when user starts typing
-                    if (country && e.target.value !== country) {
-                      setCountry("");
+                    // Clear errors when user types
+                    if (errors.country) {
+                      setErrors((prev) => {
+                        const newErrors = { ...prev };
+                        delete newErrors.country;
+                        return newErrors;
+                      });
                     }
                   }}
                   onFocus={() => setIsCountryOpen(true)}
+                  onBlur={() => {
+                    // Keep dropdown open briefly to allow clicking on options
+                    setTimeout(() => setIsCountryOpen(false), 150);
+                  }}
                   placeholder="Select your country of residence"
                   className="flex-1 bg-transparent outline-none text-sm"
                   style={{ color: country ? "#111827" : "#6b7280" }}
+                  list="country-suggestions"
                 />
+                {/* <datalist id="country-suggestions">
+                  {allCountries.map((countryOption) => (
+                    <option key={countryOption} value={countryOption} />
+                  ))}
+                </datalist> */}
                 <svg
-                  className={`w-4 h-4 transition-transform ${
-                    isCountryOpen ? "rotate-180" : ""
-                  }`}
+                  className={`w-4 h-4 transition-transform ${isCountryOpen ? "rotate-180" : ""
+                    }`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -434,7 +443,7 @@ const IndividualPledgeForm = () => {
                   />
                 </svg>
               </div>
-              
+
               <AnimatePresence>
                 {isCountryOpen && (
                   <motion.div
@@ -451,7 +460,7 @@ const IndividualPledgeForm = () => {
                           className="px-3 py-2 hover:bg-purple-50 cursor-pointer text-sm transition-colors"
                           style={{
                             color: "#374151",
-                            backgroundColor: "transparent"
+                            backgroundColor: "transparent",
                           }}
                           onMouseEnter={(e) => {
                             e.target.style.backgroundColor = "#f3e8ff";
@@ -493,14 +502,11 @@ const IndividualPledgeForm = () => {
               value={organisation}
               onChange={handleTextChange}
               placeholder="If you're associated with any organisation, institution, or community group"
-              className={`mt-1 block w-full border rounded-md p-3 text-sm ${
-                errors.organisation ? "border-red-500" : "border-gray-300"
-              }`}
+              className={`mt-1 block w-full border rounded-md p-3 text-sm ${errors.organisation ? "border-red-500" : "border-gray-300"
+                }`}
             />
             {errors.organisation && (
-              <p className="text-red-600 text-md mt-1">
-                {errors.organisation}
-              </p>
+              <p className="text-red-600 text-md mt-1">{errors.organisation}</p>
             )}
           </div>
 
@@ -519,9 +525,8 @@ const IndividualPledgeForm = () => {
               value={website}
               onChange={handleTextChange}
               placeholder="If you'd like us to connect with your work or initiatives"
-              className={`mt-1 block w-full border rounded-md p-3 text-sm ${
-                errors.website ? "border-red-500" : "border-gray-300"
-              }`}
+              className={`mt-1 block w-full border rounded-md p-3 text-sm ${errors.website ? "border-red-500" : "border-gray-300"
+                }`}
             />
             {errors.website && (
               <p className="text-red-600 text-md mt-1">{errors.website}</p>
@@ -544,11 +549,8 @@ const IndividualPledgeForm = () => {
             onChange={handleTextChange}
             rows={4}
             placeholder="A short statement about your motivation or values"
-            className={`mt-1 block w-full border rounded-md p-3 text-sm ${
-              errors.motivationStatement
-                ? "border-red-500"
-                : "border-gray-300"
-            }`}
+            className={`mt-1 block w-full border rounded-md p-3 text-sm ${errors.motivationStatement ? "border-red-500" : "border-gray-300"
+              }`}
           />
           {errors.motivationStatement && (
             <p className="text-red-600 text-md mt-1">
@@ -559,8 +561,8 @@ const IndividualPledgeForm = () => {
 
         {/* Privacy Policy */}
         <p className="text-md text-gray-600">
-          By submitting this form, you confirm that you are taking the Purple Pledge
-          as an individual and agree to our terms and conditions.
+          By submitting this form, you confirm that you are taking the Purple
+          Pledge as an individual and agree to our terms and conditions.
         </p>
 
         {/* Submit Button */}
@@ -583,23 +585,31 @@ const IndividualPledgeForm = () => {
       <AnimatePresence>
         {showSuccessModal && (
           <motion.div
-            className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50"
+            className={`fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50 lg:p-0 p-5`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-white rounded-lg p-6 text-center shadow-xl"
+              className={`bg-white rounded-lg p-6 text-center shadow-xl`}
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ type: "spring", stiffness: 260, damping: 20 }}
             >
-              <h3 className="text-lg font-semibold text-green-700">
-                Purple Pledge Submitted Successfully
+              <h3
+                className={`text-lg font-semibold text-green-700 max-w-md mx-auto`}
+              >
+                Thank you for taking the Purple Pledge. Your commitment brings
+                us one step closer to a more accessible and inclusive world.
               </h3>
               <button
-                onClick={() => setShowSuccessModal(false)}
+                onClick={() => {
+                  setShowSuccessModal(false);
+                  if (typeof onSuccess === 'function') {
+                    onSuccess();
+                  }
+                }}
                 className="mt-4 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition"
               >
                 Close

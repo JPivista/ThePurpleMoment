@@ -37,10 +37,13 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-20 transition-all duration-300`}
+    >
+      {/* <header
+      className={`fixed top-0 left-0 right-0 z-20 transition-all duration-300 ${
         isScrolled ? "bg-white/80 backdrop-blur-md shadow-lg" : "bg-transparent"
       }`}
-    >
+    > */}
       <div className="container mx-auto px-4 py-3 md:py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -73,11 +76,7 @@ const Header = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className={`${
-                  isScrolled
-                    ? "fixed inset-0 z-0 flex items-center justify-center md:mt-[400px] xl:mt-[400px] lg:mt-[420px] mt-[350px]"
-                    : "fixed inset-0 z-0 flex items-center justify-center"
-                }`}
+                className="fixed inset-0 z-0 flex items-center justify-center"
               >
                 {/* Backdrop with blur effect */}
                 <motion.div
@@ -98,7 +97,7 @@ const Header = () => {
                 >
                   <button
                     onClick={handleCloseModal}
-                    className="absolute top-4 right-4 text-black hover:text-red-500 text-5xl font-bold"
+                    className="absolute top-4 right-4 z-50 text-black hover:text-red-500 lg:text-5xl text-3xl font-bold bg-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-200"
                   >
                     &times;
                   </button>
@@ -111,21 +110,19 @@ const Header = () => {
                     <div className="flex space-x-1 mb-6 bg-gray-100 p-1 rounded-lg">
                       <button
                         onClick={() => setActiveTab("institution")}
-                        className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all duration-200 ${
-                          activeTab === "institution"
-                            ? "bg-white text-[#84298E] shadow-sm"
-                            : "text-gray-600 hover:text-gray-900"
-                        }`}
+                        className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all duration-200 ${activeTab === "institution"
+                          ? "bg-white text-[#84298E] shadow-sm"
+                          : "text-gray-600 hover:text-gray-900"
+                          }`}
                       >
                         For Oganizations and Institutions
                       </button>
                       <button
                         onClick={() => setActiveTab("individual")}
-                        className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all duration-200 ${
-                          activeTab === "individual"
-                            ? "bg-white text-[#84298E] shadow-sm"
-                            : "text-gray-600 hover:text-gray-900"
-                        }`}
+                        className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all duration-200 ${activeTab === "individual"
+                          ? "bg-white text-[#84298E] shadow-sm"
+                          : "text-gray-600 hover:text-gray-900"
+                          }`}
                       >
                         For Individual
                       </button>
@@ -137,8 +134,7 @@ const Header = () => {
                         <p className="mb-4">
                           Join the Purple Movement and commit to building a
                           fairer, more inclusive future. This form is currently
-                          open to institutions. If you wish to take the pledge
-                          as an individual, please write to us.
+                          open to institutions.
                         </p>
                         <MovementForm onSuccess={handleFormSuccess} />
                       </div>
