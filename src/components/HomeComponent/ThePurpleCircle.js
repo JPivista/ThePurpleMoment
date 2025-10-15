@@ -4,10 +4,10 @@ import React from 'react'
 const ThePurpleCircle = () => {
     return (
         <>
-            <section className="relative pt-10 bg-gray-50">
+            <section className="relative pt-10">
                 <div className="container mx-auto flex flex-col items-center justify-center md:space-y-8 space-y-4 md:px-0 px-4">
                     <div className='flex md:flex-row flex-col justify-center items-center'>
-                        <div className='flex flex-col space-y-4 w-1/2'>
+                        <div className='flex flex-col space-y-4 md:w-1/2'>
                             <h2 className="md:text-4xl text-2xl font-bold text-custom-purple Merriweather-regular">
                                 The Purple Circle <br />
                                 <span className="text-black">A Community of Practice</span>
@@ -18,18 +18,20 @@ const ThePurpleCircle = () => {
                             </p>
                         </div>
 
-                        <div className='w-1/2'>
+                        <div className='md:w-1/2 w-full'>
                             <Image
                                 src="/home/the-purple-circle.webp"
                                 alt="The Purple Circle"
                                 width={800}
-                                height={600}
+                                height={600
+
+                                }
                             />
                         </div>
                     </div>
                 </div>
                 <div className="container mx-auto">
-                    <hr className="my-10 text-[#DFCADD]" />
+                    <hr className="md:my-10 my-6 text-[#DFCADD]" />
                 </div>
             </section>
 

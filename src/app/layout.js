@@ -2,6 +2,7 @@ import { Geist, Geist_Mono, Merriweather, Poppins } from "next/font/google";
 import "./globals.css";
 import Header from "@/shared/Header/Header";
 import Footer from "@/shared/Footer";
+import config from "@/config";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,11 +29,26 @@ const poppins = Poppins({
 export const metadata = {
   title: "The Purple Movement",
   description: "Inclusion. Awareness. Action.",
+  robots: config.getRobotsMeta(),
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-VEVLLJY7DG"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-VEVLLJY7DG');
+            `,
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${merriweather.variable} ${poppins.variable} antialiased`}
       >

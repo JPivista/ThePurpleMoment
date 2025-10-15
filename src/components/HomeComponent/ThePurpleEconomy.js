@@ -20,7 +20,7 @@ const ThePurpleEconomy = () => {
                             As Workforce
                         </h3>
                         <p className="text-white Poppins-regular leading-relaxed">
-                            Inclusive hiring unlocks diverse problem-solving, empathy, and creativity. Employees with disabilities often exhibit higher resilience, discipline, and team loyalty.
+                            Inclusive hiring unlocks diverse <br /> problem-solving, empathy, and creativity. Employees with disabilities often exhibit higher resilience, discipline, and team loyalty.
                         </p>
                     </div>
 
@@ -30,7 +30,7 @@ const ThePurpleEconomy = () => {
                             As Consumers
                         </h3>
                         <p className="text-white Poppins-regular leading-relaxed">
-                            Globally, the disability community and their families represent nearly 3 billion consumers with over USD 13 trillion in disposable income — an enormous, largely untapped market.
+                            Globally, the disability community and their families represent nearly 3 billion consumers with over USD 13 trillion in disposable income, an enormous, largely untapped market.
                         </p>
                     </div>
 
@@ -40,7 +40,7 @@ const ThePurpleEconomy = () => {
                             As Entrepreneurs
                         </h3>
                         <p className="text-white Poppins-regular leading-relaxed">
-                            Across the world, entrepreneurs with disabilities are redefining innovation — from accessible tech startups to adaptive fashion and mobility solutions.
+                            Across the world, entrepreneurs with disabilities are redefining innovation from accessible tech startups to adaptive fashion and mobility solutions.
                         </p>
                     </div>
                 </div>

@@ -4,7 +4,7 @@ import React from 'react'
 const TheBarriersWeCanRemove = () => {
     return (
         <>
-            <section className="relative bg-gray-50">
+            <section className="relative">
                 <div className="container mx-auto flex flex-col items-center justify-center md:space-y-8 space-y-4 md:px-0 px-4">
                     <h2 className="md:text-4xl text-2xl font-bold text-black Merriweather-regular text-center">
                         The Barriers We Can Remove

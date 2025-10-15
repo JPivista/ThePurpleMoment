@@ -13,7 +13,8 @@ const Foreword = () => {
 
                         <div className="space-y-3 text-lg text-black leading-relaxed Merriweather-light">
                             <p className="Poppins-light">
-                                This movement began with a simple question: why do so many talented people still find doors closed to them? We realized accessibility isn’t just about ramps or signs , it’s about mindsets. <br />
+                                This movement began with a simple question: why do so many talented people still find doors closed to them? <br />
+                                We realized accessibility isn’t just about ramps or signs, it’s about mindsets. <br />
                                 <span className="text-custom-purple"> The Purple Movement</span> is our invitation to open those doors, together.
                             </p>
 

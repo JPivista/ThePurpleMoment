@@ -37,11 +37,11 @@ const TheWorldWeImagine = () => {
                 // summary: "Starting the inclusion journey requires commitment, planning, and actionable steps. Organizations can begin by assessing current accessibility, training teams, and implementing inclusive policies.",
                 // heading: "5 Steps to Get Started",
                 numberedSteps: [
-                    "Conduct an accessibility walk of your office.",
-                    "Review your website and recruitment portal for screen-reader compatibility.",
-                    "Set up an inclusion committee or accessibility champion.",
-                    "Host a one-hour accessibility awareness session.",
-                    "Share your Purple Pledge on LinkedIn or internal platforms."
+                    "Conduct an accessibility walk of your office",
+                    "Review your website and recruitment portal for screen-reader compatibility",
+                    "Set up an inclusion committee or accessibility champion",
+                    "Host a one-hour accessibility awareness session",
+                    "Share your Purple Pledge on LinkedIn or internal platforms"
                 ],
                 footer: "Small steps lead to systemic change.",
                 points: [
@@ -70,11 +70,9 @@ const TheWorldWeImagine = () => {
             content: {
                 summary: "Accessibility benefits everyone — not just people with disabilities. When we design for the few, we often improve life for the many.",
                 bulletPoints: [
-                    "Curb ramps help wheelchairs — and also parents with strollers or travelers with luggage.",
-                    "Closed captions assist the hearing-impaired — and anyone in a noisy café.",
-                    "Voice assistants like Alexa or Siri began as assistive technology.Curb ramps help wheelchairs — and also parents with strollers or travelers with luggage.",
-                    "Closed captions assist the hearing-impaired — and anyone in a noisy café.",
-                    "Voice assistants like Alexa or Siri began as assistive technology."
+                    "Curb ramps help wheelchairs — and also parents with strollers or travelers with luggage",
+                    "Closed captions assist the hearing-impaired — and anyone in a noisy cafe",
+                    "Voice assistants like Alexa or Siri began as assistive technology",
                 ],
                 footer: "Universal Design = Better Design for All.",
                 points: [
