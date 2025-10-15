@@ -31,7 +31,7 @@ const TheBigPicture = () => {
                     </div>
 
                     <div className="flex flex-col md:flex-row justify-center items-center bg-[#0190CA] rounded-2xl md:p-10 p-4 gap-4 md:w-[80%] w-full mx-auto">
-                        <div clssName="md:w-1/2 w-full">
+                        <div className="md:w-1/2 w-full">
                             <p className="text-white Poppins-light">
                                 Inclusive businesses don’t just ‘do good’ — they perform better. Research by McKinsey and Accenture shows companies with strong inclusion policies are 30% more profitable and have higher employee retention.
                             </p>

@@ -113,7 +113,7 @@ const TheWorldWeImagine = () => {
                         The World We Imagine
                     </h2>
                     <p className='text-white Poppins-light text-center md:w-[50%] w-full'>
-                        A world where every door opens — for everyone. The Purple Movement is not a campaign. It's a promise — that accessibility will become a way of life, not an afterthought. Together, we can make inclusion visible and create a society that truly leaves no one behind.
+                        A world where every door opens — for everyone. The Purple Movement is not a campaign. It&apos;s a promise — that accessibility will become a way of life, not an afterthought. Together, we can make inclusion visible and create a society that truly leaves no one behind.
                     </p>
 
                     {/* Tab Navigation */}
