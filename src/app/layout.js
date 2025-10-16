@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/shared/Header/Header";
 import Footer from "@/shared/Footer";
 import config from "@/config";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -62,6 +63,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${merriweather.variable} ${poppins.variable} antialiased`}
       >
+        <ScrollToTop />
         <Header />
         <div>{children}</div>
         <Footer />

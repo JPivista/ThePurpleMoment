@@ -61,6 +61,7 @@ const Header = () => {
               width={18}
               height={18}
               className="w-32 h-16 md:w-48 md:h-20"
+              priority
             />
           </div>
 

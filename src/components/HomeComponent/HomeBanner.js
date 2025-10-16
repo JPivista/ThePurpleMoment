@@ -24,9 +24,10 @@ const HomeBanner = () => {
                             <Image
                                 src="/home/the-purple-momnet-banner.webp"
                                 alt="The Purple Moment - Hands touching globe"
-                                width={1700}
-                                height={1700}
+                                width={1000}
+                                height={1000}
                                 className="w-full h-auto rounded-lg lg:absolute lg:right-0 lg:bottom-0 lg:w-[55%]"
+                                priority
                             />
                         </div>
                     </div>
