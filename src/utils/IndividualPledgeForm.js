@@ -235,7 +235,7 @@ const IndividualPledgeForm = ({ onSuccess }) => {
 
     try {
       const res = await axios.post(
-        `https://docs.ivistaz.com/wp-json/contact-form-7/v1/contact-forms/1198/feedback`,
+        `https://docs.purplemovement.in/wp-json/contact-form-7/v1/contact-forms/8/feedback`,
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );

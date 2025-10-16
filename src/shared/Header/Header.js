@@ -48,7 +48,7 @@ const Header = () => {
     //   className={`fixed top-0 left-0 right-0 z-20 transition-all duration-300`}
     // >
     <header
-      className={`fixed top-0 left-0 right-0 z-20 transition-all duration-300 ${isScrolled ? "bg-white shadow-lg" : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-20 transition-all duration-300 ${isScrolled ? "bg-white/40 shadow-lg" : "bg-transparent"
         }`}
     >
       <div className="container mx-auto px-4 py-3 md:py-4">
@@ -123,7 +123,7 @@ const Header = () => {
                           : "text-gray-600 hover:text-gray-900"
                           }`}
                       >
-                        For Oganizations and Institutions
+                        For Organizations and Institutions
                       </button>
                       <button
                         onClick={() => setActiveTab("individual")}
