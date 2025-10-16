@@ -36,8 +36,17 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-VEVLLJY7DG"></script>
+        {/* ✅ Google Search Console verification */}
+        <meta
+          name="google-site-verification"
+          content="n_q2-Ycsm-VccdzsRMsbxM5eGr1ZmfGYG9vG_QEv94M"
+        />
+
+        {/* ✅ Google Analytics (gtag.js) */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-VEVLLJY7DG"
+        ></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -49,13 +58,12 @@ export default function RootLayout({ children }) {
           }}
         />
       </head>
+
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${merriweather.variable} ${poppins.variable} antialiased`}
       >
         <Header />
-        <div>
-          {children}
-        </div>
+        <div>{children}</div>
         <Footer />
       </body>
     </html>

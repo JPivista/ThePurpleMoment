@@ -34,7 +34,6 @@ const ThePurpleCircle = () => {
                     <hr className="md:mt-10 mt-6 text-[#DFCADD]" />
                 </div>
             </section>
-
         </>
     )
 }
