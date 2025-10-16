@@ -31,7 +31,7 @@ const ThePurpleCircle = () => {
                     </div>
                 </div>
                 <div className="container mx-auto">
-                    <hr className="md:my-10 my-6 text-[#DFCADD]" />
+                    <hr className="md:mt-10 mt-6 text-[#DFCADD]" />
                 </div>
             </section>
 

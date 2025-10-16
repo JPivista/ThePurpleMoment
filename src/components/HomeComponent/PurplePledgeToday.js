@@ -146,7 +146,7 @@ const PurplePledgeToday = () => {
 
   return (
     <>
-      <section className="relative py-10 bg-white">
+      <section className="relative lg:p-10 pb-4 bg-white">
         <div className="container mx-auto flex flex-col items-center justify-center md:space-y-8 space-y-6 md:px-0 px-4">
           <h2 className="md:text-4xl text-2xl font-bold text-custom-purple Merriweather-regular text-center">
             Take the Purple Pledge Today

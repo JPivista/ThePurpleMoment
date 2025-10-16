@@ -101,7 +101,7 @@ const TheWorldWeImagine = () => {
     return (
         <>
             <section
-                className="relative py-10 md:my-10 my-6"
+                className="relative py-10 md:mt-10 mt-6"
                 style={{
                     background: 'linear-gradient(90deg, #29388D 0%, #84298E 100%)'
                 }}

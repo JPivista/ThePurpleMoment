@@ -58,10 +58,10 @@ const FacesofInclusion = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center py-16 text-center px-4">
+    <div className="flex flex-col items-center justify-center lg:py-10 py-6 text-center px-4">
       {/* Top Section */}
       <div>
-        <h2 className="md:text-4xl text-2xl font-semibold flex flex-col items-center justify-center gap-1 pb-10">
+        <h2 className="md:text-4xl text-2xl font-semibold flex flex-col items-center justify-center gap-1 pb-4">
           <span className="text-black roboto-serif-medium md:text-4xl text-3xl">
             FACES OF INCLUSION
           </span>
